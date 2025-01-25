@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convergent Car Dealership</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            background: linear-gradient(90deg, #0077b6, #00b4d8);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        .car-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .car-card {
+            background: #fff;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .car-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .car-card .details {
+            padding: 15px;
+        }
+
+        .car-card .details p {
+            font-size: 1rem;
+            color: black;
+            margin-bottom: 10px;
+        }
+        .car-card .details b {
+            font-size: 20px;
+            color: black;
+            margin-bottom: 10px;
+        }
+
+        .car-card .details .info-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #0077b6;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .car-card .details .info-button:hover {
+            background-color: #005f99;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .car-card .details p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+    <script>
+        function toggleDetails(button) {
+            const details = button.previousElementSibling;
+            details.classList.toggle('hidden');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Convergent Car Dealership</h1>
+    </header>
+    {% for x in range(0,length, 4) %}
+        <div class="car-container">
+            <div class="car-card">
+                <img src="{{carList[x]['image']}}" alt="Car Image">
+                <div class="details">
+                    <div class="hidden">
+                        <b>{{carList[x]["year"]}} {{carList[x]["make"]}} {{carList[x]["model"]}}</b>
+                        <p>Price: ${{carList[x]["price"]}}</p>
+                    </div>
+                    <button class="info-button" onclick="toggleDetails(this)">View Details</button>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <img src="{{carList[x+1]['image']}}" alt="Car Image">
+                <div class="details">
+                    <div class="hidden">
+                        <b>{{carList[x+1]["year"]}} {{carList[x+1]["make"]}} {{carList[x+1]["model"]}}</b>
+                        <p>Price: ${{carList[x+1]["price"]}}</p>
+                    </div>
+                    <button class="info-button" onclick="toggleDetails(this)">View Details</button>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <img src="{{carList[x+2]['image']}}" alt="Car Image">
+                <div class="details">
+                    <div class="hidden">
+                        <b>{{carList[x+2]["year"]}} {{carList[x+2]["make"]}} {{carList[x+2]["model"]}}</b>
+                        <p>Price: ${{carList[x+2]["price"]}}</p>
+                    </div>
+                    <button class="info-button" onclick="toggleDetails(this)">View Details</button>
+                </div>
+            </div>
+
+            <div class="car-card">
+                <img src="{{carList[x+3]['image']}}" alt="Car Image">
+                <div class="details">
+                    <div class="hidden">
+                        <b>{{carList[x+3]["year"]}} {{carList[x+3]["make"]}} {{carList[x+3]["model"]}}</b>
+                        <p>Price: ${{carList[x+3]["price"]}}</p>
+                    </div>
+                    <button class="info-button" onclick="toggleDetails(this)">View Details</button>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</body>
+</html>
